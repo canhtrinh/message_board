@@ -1,0 +1,16 @@
+{
+  "name": "message_board_api_layer",
+  "version": "1.0.0",
+  "description": "message board api layer",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "node src/entry.ts",
+    "test": "npm run test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  }
+}
