@@ -2,15 +2,27 @@
   "name": "message_board_api_layer",
   "version": "1.0.0",
   "description": "message board api layer",
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "main": "src/server.ts",
   "scripts": {
     "start": "node src/entry.ts",
-    "test": "npm run test"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.0",
+    "jest": "^26.6.3",
+    "supertest": "^6.1.3"
   }
 }
