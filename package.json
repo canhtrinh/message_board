@@ -1,0 +1,22 @@
+{
+  "name": "message_board",
+  "version": "1.0.0",
+  "description": "message board client and server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "cd server && npm run start",
+    "build-server": "cd server && npm run build",
+    "build-and-run-server": "cd server && npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canhtrinh/message_board.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/canhtrinh/message_board/issues"
+  },
+  "homepage": "https://github.com/canhtrinh/message_board#readme"
+}
