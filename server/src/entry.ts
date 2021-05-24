@@ -1,5 +1,5 @@
-import express, { Application } from "express";
+import { Application } from "express";
+import ServerInstance from "./Setup/ServerInstance";
 
-console.log("Hello");
-
-const app: Application = express();
+const serverInstance: ServerInstance = new ServerInstance();
+const app: Application = serverInstance.getServerInstance();

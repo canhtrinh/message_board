@@ -1,4 +1,5 @@
 const request = require('supertest');
+// import * as request from "supertest";
 const app = require('../src/entry');
 
 
@@ -31,10 +32,13 @@ describe("Get endpoints for querying channel's messages", () => {
         const res = await request(app)
         .post('/channel')
         .send({
-          userId: 001,
+          userId: "001",
           messageText: 'TEST_MESSAGE',
         })
       expect(res.statusCode).toEqual(200)
       expect(res.body).toHaveProperty('messageText')
     })
   })  
+
+const tests: any = null;
+export default tests;
