@@ -40,7 +40,6 @@ class MessageController extends _BaseController_1.default {
             const routePath = "/:channel";
             this.appInstance.post(routePath, (req, res) => {
                 var _a, _b;
-                console.log("TRYING TO POST");
                 const channelId = parseInt((_a = req === null || req === void 0 ? void 0 : req.params) === null || _a === void 0 ? void 0 : _a.channel);
                 const message = (_b = req === null || req === void 0 ? void 0 : req.body) === null || _b === void 0 ? void 0 : _b.message;
                 MessagesDao_1.default
@@ -51,11 +50,20 @@ class MessageController extends _BaseController_1.default {
     }
 }
 exports.default = MessageController;
-// curl -XPOST -d '{"message": "xyz"}' -H 'content-type: application/json' localhost:3001/1
-// fetch("http://localhost:3001/1", {
-//   method: "post",
-//   body: JSON.stringify({ message: "XXXX" }),
-//   headers: { "Content-Type": "application/json" },
-// })
-//   .then((res) => res.json())
-//   .then((json) => console.log(json));
+/*
+
+CL curl testing:
+curl -XPOST -d '{"message": "xyz"}' -H 'content-type: application/json' localhost:3001/1
+
+or from JS debugger:
+fetch("http://localhost:3001/1", {
+    method: "post",
+    body: JSON.stringify({ "message": "hello canh" }),
+    headers: { "Content-Type": "application/json" },
+})
+.then((res) => res.json())
+.then((json) => console.log(json));
+
+
+
+*/ 
