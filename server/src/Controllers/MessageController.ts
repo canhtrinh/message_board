@@ -16,11 +16,11 @@ export default class MessageController extends _BaseController {
     }
 
     public async getMessages() {
-        this.appInstance.get(this.MESSAGE_ENDPOINT, (req, res) => {
-            this.database.getChannelInstance()
-            .findAll()
-            .then((response: any) => res.json(response));
-          });
+        // this.appInstance.get(this.MESSAGE_ENDPOINT, (req, res) => {
+        //     this.database.getChannelInstance()
+        //     .findAll()
+        //     .then((response: any) => res.json(response));
+        //   });
     }
 
 }

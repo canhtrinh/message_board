@@ -1,47 +1,48 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Sequelize = require('sequelize');
-const Channel_1 = require("../Models/DB/Channel");
+const DatabaseAccess_1 = __importDefault(require("../Models/Dao/DatabaseAccess"));
+const sqlite3 = require("sqlite3").verbose();
 class Database {
-    constructor(database) {
-        this.database = database;
-        this.sequelize = new Sequelize({
-            dialect: 'sqlite',
-            storage: './database.sqlite'
-        });
-        this.Channel = Channel_1.ChannelSchemaGenerator(this.sequelize);
-        this.connect();
+    constructor() {
+        this.database = this.connectToDatabase();
     }
-    connect() {
-        this.sequelize
-            .authenticate()
-            .then(() => {
-            console.log('Connection has been established successfully.');
-            this.sequelize.sync({ force: true })
-                .then(() => {
-                console.log(`Database & tables created!`);
-                this.bulkCreateChannels();
-            });
-        })
-            .catch((err) => { console.error('Unable to connect to the database:', err); });
+    connectToDatabase() {
+        const db = new sqlite3
+            .Database(':memory:', (err) => {
+            err && console.error(err.message);
+            !err && console.log('Connected to the in-memory SQlite database.');
+        });
+        this.createTableAndCreateDummyData(db);
+        return db;
+    }
+    createTableAndCreateDummyData(db) {
+        db.run(`CREATE TABLE IF NOT EXISTS channels (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            channel TEXT,
+            tag TEXT
+        )`, (err) => {
+            if (err) {
+                return console.error(err.message);
+            }
+            console.log('established tables.');
+            this.bulkCreateChannels(db);
+        });
+    }
+    bulkCreateChannels(db) {
+        DatabaseAccess_1.default.addChannel(db, "NBC", "001");
+        DatabaseAccess_1.default.addChannel(db, "ABC", "002");
+        DatabaseAccess_1.default.addChannel(db, "CBS", "003");
     }
     getDatabaseInstance() {
-        return this.sequelize;
+        return this.database;
     }
-    getChannelInstance() {
-        return this.Channel;
-    }
-    bulkCreateChannels() {
-        this.getChannelInstance().bulkCreate([
-            { channel: 'NBC', tag: '001' },
-            { channel: 'ABC', tag: '002' },
-            { channel: 'CBS', tag: '003' }
-        ])
-            .then(() => {
-            return this.Channel.findAll();
-        })
-            .then((channels) => {
-            console.log(channels);
+    closeDatabaseConnection() {
+        this.database.close((err) => {
+            err && console.error(err.message);
+            !err && console.log('Close the database connection.');
         });
     }
 }

@@ -10,7 +10,7 @@ const Database_1 = __importDefault(require("./Database"));
 class ServerInstance {
     constructor() {
         this.serverInstance = express_1.default();
-        this.database = new Database_1.default(null);
+        this.database = new Database_1.default();
         this.start();
     }
     start() {

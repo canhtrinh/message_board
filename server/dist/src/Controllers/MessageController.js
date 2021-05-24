@@ -23,11 +23,11 @@ class MessageController extends _BaseController_1.default {
     }
     getMessages() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.appInstance.get(this.MESSAGE_ENDPOINT, (req, res) => {
-                this.database.getChannelInstance()
-                    .findAll()
-                    .then((response) => res.json(response));
-            });
+            // this.appInstance.get(this.MESSAGE_ENDPOINT, (req, res) => {
+            //     this.database.getChannelInstance()
+            //     .findAll()
+            //     .then((response: any) => res.json(response));
+            //   });
         });
     }
 }

@@ -12,7 +12,7 @@ export default class ServerInstance {
 
         this.serverInstance = express();
 
-        this.database = new Database(null);
+        this.database = new Database();
         
         this.start();
         
