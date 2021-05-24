@@ -11,8 +11,7 @@ class Database {
         this.database = this.connectToDatabase();
     }
     connectToDatabase() {
-        const db = new sqlite3
-            .Database(':memory:', (err) => {
+        const db = new sqlite3.Database(':memory:', (err) => {
             err && console.error(err.message);
             !err && console.log('Connected to the in-memory SQlite database.');
         });

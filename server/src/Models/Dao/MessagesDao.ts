@@ -27,16 +27,21 @@ export default class MessagesDao {
     }
 
     public static addMessage(db: any, message: string, channelId: number) {
+
         return db.run(
             `INSERT INTO messages (message, channel_id) VALUES (?, ?)`,
             [message, channelId], 
             (err:any) => console.log("added message for channel",message, channelId, err)
         );
+    
     }
 
     public static getAllMessagesForChannel(db: any, channelId: number) {
+    
         return new Promise((resolve, reject) => {
+    
             db.all(`SELECT * FROM messages WHERE channel_id=${channelId}`, [], (err: any, result: any) => {
+
                 if (err) {
                     console.log('Error running sql: ',err);
                     reject(err)
@@ -44,8 +49,31 @@ export default class MessagesDao {
                     console.log("results",result);
                     resolve(result)
                 }
-            })
+    
+            });
+    
         });
+    
+    }
+
+    public static postMessageToChannel(db: any, message: string, channelId: number) {
+    
+        return new Promise((resolve, reject) => {
+    
+            db.run(`INSERT INTO messages (message, channel_id) VALUES(?,?)`, [message, channelId], (err: any) => {
+
+                if (err) {
+                    console.log(err.message);
+                    reject();
+                    return;
+                }
+
+                const message: string = `A row has been inserted with rowid ${channelId}`;
+                resolve(message);
+              });
+    
+        });
+    
     }
 
 }

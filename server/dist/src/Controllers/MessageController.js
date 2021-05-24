@@ -21,6 +21,7 @@ class MessageController extends _BaseController_1.default {
         this.appInstance = appInstance;
         this.database = database;
         this.getAllMessagesForChannel();
+        this.postMessageToChannel();
     }
     getAllMessagesForChannel() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -28,10 +29,33 @@ class MessageController extends _BaseController_1.default {
             this.appInstance.get(routePath, (req, res) => {
                 var _a;
                 const channelId = parseInt((_a = req === null || req === void 0 ? void 0 : req.params) === null || _a === void 0 ? void 0 : _a.channel);
-                MessagesDao_1.default.getAllMessagesForChannel(this.database.getDatabaseInstance(), channelId)
+                MessagesDao_1.default
+                    .getAllMessagesForChannel(this.database.getDatabaseInstance(), channelId)
+                    .then((response) => res.json(response));
+            });
+        });
+    }
+    postMessageToChannel() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const routePath = "/:channel";
+            this.appInstance.post(routePath, (req, res) => {
+                var _a, _b;
+                console.log("TRYING TO POST");
+                const channelId = parseInt((_a = req === null || req === void 0 ? void 0 : req.params) === null || _a === void 0 ? void 0 : _a.channel);
+                const message = (_b = req === null || req === void 0 ? void 0 : req.body) === null || _b === void 0 ? void 0 : _b.message;
+                MessagesDao_1.default
+                    .postMessageToChannel(this.database.getDatabaseInstance(), message, channelId)
                     .then((response) => res.json(response));
             });
         });
     }
 }
 exports.default = MessageController;
+// curl -XPOST -d '{"message": "xyz"}' -H 'content-type: application/json' localhost:3001/1
+// fetch("http://localhost:3001/1", {
+//   method: "post",
+//   body: JSON.stringify({ message: "XXXX" }),
+//   headers: { "Content-Type": "application/json" },
+// })
+//   .then((res) => res.json())
+//   .then((json) => console.log(json));

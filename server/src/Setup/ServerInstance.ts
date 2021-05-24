@@ -3,6 +3,8 @@ import { PORT } from "../../configurations/constants";
 import ChannelController from "../Controllers/ChannelController";
 import MessageController from "../Controllers/MessageController";
 import Database from "./Database";
+import bodyParser from "body-parser";
+import cors from "cors";
 
 export default class ServerInstance {
 
@@ -12,6 +14,8 @@ export default class ServerInstance {
     constructor() {
 
         this.serverInstance = express();
+
+        this.applyMiddleware();
 
         this.database = new Database();
         
@@ -34,6 +38,20 @@ export default class ServerInstance {
             console.error("The server instance failed to start");
         
         }
+
+    }
+
+    public applyMiddleware(): void {
+
+        this.serverInstance.use(cors());
+
+        this.serverInstance.use(bodyParser.urlencoded({ extended: false }));
+
+        this.serverInstance.use(bodyParser.json());
+        
+        this.serverInstance.use("/", express.Router());
+
+        this.serverInstance.use(express.json());
 
     }
 

@@ -25,7 +25,8 @@ class ChannelController extends _BaseController_1.default {
     getAllChannels() {
         return __awaiter(this, void 0, void 0, function* () {
             this.appInstance.get(this.CHANNEL_ENDPOINT, (req, res) => {
-                ChannelDao_1.default.getAllChannels(this.database.getDatabaseInstance())
+                ChannelDao_1.default
+                    .getAllChannels(this.database.getDatabaseInstance())
                     .then((response) => res.json(response));
             });
         });

@@ -18,6 +18,8 @@ export default class MessageController extends _BaseController {
         this.database = database;
         
         this.getAllMessagesForChannel();
+
+        this.postMessageToChannel();
     
     }
 
@@ -37,4 +39,40 @@ export default class MessageController extends _BaseController {
 
     }
 
+    public async postMessageToChannel() {
+        
+        const routePath: string = "/:channel";
+        
+        this.appInstance.post(routePath, (req, res) => {
+
+            const channelId: number = parseInt(req?.params?.channel);
+
+            const message: string = req?.body?.message;
+            
+            MessagesDao
+            .postMessageToChannel(this.database.getDatabaseInstance(), message, channelId)
+            .then((response: any) => res.json(response));
+        
+        });
+
+    }
+
 }
+
+/*
+
+CL curl testing:
+curl -XPOST -d '{"message": "xyz"}' -H 'content-type: application/json' localhost:3001/1
+
+or from JS debugger:
+fetch("http://localhost:3001/1", {
+    method: "post",
+    body: JSON.stringify({ "message": "hello canh" }),
+    headers: { "Content-Type": "application/json" },
+})
+.then((res) => res.json())
+.then((json) => console.log(json));
+
+
+
+*/

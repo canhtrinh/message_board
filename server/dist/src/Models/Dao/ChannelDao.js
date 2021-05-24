@@ -24,8 +24,7 @@ class ChannelDao {
         return new Promise((resolve, reject) => {
             db.all(`SELECT * FROM channels`, [], (err, result) => {
                 if (err) {
-                    console.log('Error running sql: ');
-                    console.log(err);
+                    console.log('Error running sql: ', err);
                     reject(err);
                 }
                 else {

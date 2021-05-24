@@ -27,14 +27,26 @@ class MessagesDao {
         return new Promise((resolve, reject) => {
             db.all(`SELECT * FROM messages WHERE channel_id=${channelId}`, [], (err, result) => {
                 if (err) {
-                    console.log('Error running sql: ');
-                    console.log(err);
+                    console.log('Error running sql: ', err);
                     reject(err);
                 }
                 else {
                     console.log("results", result);
                     resolve(result);
                 }
+            });
+        });
+    }
+    static postMessageToChannel(db, message, channelId) {
+        return new Promise((resolve, reject) => {
+            db.run(`INSERT INTO messages (message, channel_id) VALUES(?,?)`, [message, channelId], (err) => {
+                if (err) {
+                    console.log(err.message);
+                    reject();
+                    return;
+                }
+                const message = `A row has been inserted with rowid ${channelId}`;
+                resolve(message);
             });
         });
     }
