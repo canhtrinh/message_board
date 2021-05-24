@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import { PORT } from "../../configurations/constants";
 import ChannelController from "../Controllers/ChannelController";
+import MessageController from "../Controllers/MessageController";
 import Database from "./Database";
 
 export default class ServerInstance {
@@ -45,6 +46,8 @@ export default class ServerInstance {
     public instantiateControllers(serverInstance: Application, database: any) {
 
         const channelController = new ChannelController(serverInstance, database);
+        
+        const messageController = new MessageController(serverInstance, database);
 
     }
 

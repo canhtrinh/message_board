@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const constants_1 = require("../../configurations/constants");
 const ChannelController_1 = __importDefault(require("../Controllers/ChannelController"));
+const MessageController_1 = __importDefault(require("../Controllers/MessageController"));
 const Database_1 = __importDefault(require("./Database"));
 class ServerInstance {
     constructor() {
@@ -29,6 +30,7 @@ class ServerInstance {
     }
     instantiateControllers(serverInstance, database) {
         const channelController = new ChannelController_1.default(serverInstance, database);
+        const messageController = new MessageController_1.default(serverInstance, database);
     }
 }
 exports.default = ServerInstance;

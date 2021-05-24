@@ -3,7 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const DatabaseAccess_1 = __importDefault(require("../Models/Dao/DatabaseAccess"));
+const ChannelDao_1 = __importDefault(require("../Models/Dao/ChannelDao"));
+const MessagesDao_1 = __importDefault(require("../Models/Dao/MessagesDao"));
 const sqlite3 = require("sqlite3").verbose();
 class Database {
     constructor() {
@@ -15,26 +16,13 @@ class Database {
             err && console.error(err.message);
             !err && console.log('Connected to the in-memory SQlite database.');
         });
-        this.createTableAndCreateDummyData(db);
-        return db;
-    }
-    createTableAndCreateDummyData(db) {
-        db.run(`CREATE TABLE IF NOT EXISTS channels (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            channel TEXT,
-            tag TEXT
-        )`, (err) => {
-            if (err) {
-                return console.error(err.message);
-            }
-            console.log('established tables.');
-            this.bulkCreateChannels(db);
+        db.serialize(() => {
+            ChannelDao_1.default.createChannelTableAndCreateDummyData(db);
+            ChannelDao_1.default.bulkCreateChannels(db);
+            MessagesDao_1.default.createMessageTableAndCreateDummyData(db);
+            MessagesDao_1.default.bulkCreateMessages(db);
         });
-    }
-    bulkCreateChannels(db) {
-        DatabaseAccess_1.default.addChannel(db, "NBC", "001");
-        DatabaseAccess_1.default.addChannel(db, "ABC", "002");
-        DatabaseAccess_1.default.addChannel(db, "CBS", "003");
+        return db;
     }
     getDatabaseInstance() {
         return this.database;

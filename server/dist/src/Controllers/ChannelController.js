@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const DatabaseAccess_1 = __importDefault(require("../Models/Dao/DatabaseAccess"));
+const ChannelDao_1 = __importDefault(require("../Models/Dao/ChannelDao"));
 const _BaseController_1 = __importDefault(require("./_BaseController"));
 class ChannelController extends _BaseController_1.default {
     constructor(appInstance, database) {
@@ -20,12 +20,12 @@ class ChannelController extends _BaseController_1.default {
         this.CHANNEL_ENDPOINT = "/channels";
         this.appInstance = appInstance;
         this.database = database;
-        this.getChannels();
+        this.getAllChannels();
     }
-    getChannels() {
+    getAllChannels() {
         return __awaiter(this, void 0, void 0, function* () {
             this.appInstance.get(this.CHANNEL_ENDPOINT, (req, res) => {
-                DatabaseAccess_1.default.getAllChannels(this.database.getDatabaseInstance())
+                ChannelDao_1.default.getAllChannels(this.database.getDatabaseInstance())
                     .then((response) => res.json(response));
             });
         });

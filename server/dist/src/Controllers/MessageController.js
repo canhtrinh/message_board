@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const MessagesDao_1 = __importDefault(require("../Models/Dao/MessagesDao"));
 const _BaseController_1 = __importDefault(require("./_BaseController"));
 class MessageController extends _BaseController_1.default {
     constructor(appInstance, database) {
@@ -19,15 +20,17 @@ class MessageController extends _BaseController_1.default {
         this.MESSAGE_ENDPOINT = "/messages";
         this.appInstance = appInstance;
         this.database = database;
-        this.getMessages();
+        this.getAllMessagesForChannel();
     }
-    getMessages() {
+    getAllMessagesForChannel() {
         return __awaiter(this, void 0, void 0, function* () {
-            // this.appInstance.get(this.MESSAGE_ENDPOINT, (req, res) => {
-            //     this.database.getChannelInstance()
-            //     .findAll()
-            //     .then((response: any) => res.json(response));
-            //   });
+            const routePath = this.MESSAGE_ENDPOINT + "/:channel";
+            this.appInstance.get(routePath, (req, res) => {
+                var _a;
+                const channelId = parseInt((_a = req === null || req === void 0 ? void 0 : req.params) === null || _a === void 0 ? void 0 : _a.channel);
+                MessagesDao_1.default.getAllMessagesForChannel(this.database.getDatabaseInstance(), channelId)
+                    .then((response) => res.json(response));
+            });
         });
     }
 }
