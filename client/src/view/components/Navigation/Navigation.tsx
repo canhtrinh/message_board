@@ -14,7 +14,7 @@ const Navigation = (props: INavigationProps) => (
     <div className="navigation sidebar">
         
         <header className="App-header">
-            <p>Channel Selector</p>
+            <p>Available Channels</p>
         </header>
         
         <div className="nav-items-container">

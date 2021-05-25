@@ -1,0 +1,23 @@
+.message-list {
+    padding: 20px;
+    min-height: 100vh;
+    font-size: calc(10px + 1vmin);
+  }
+
+.message-header {
+    font-size: calc(6px + 2vmin);
+}
+
+.message-list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.message-item {
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}

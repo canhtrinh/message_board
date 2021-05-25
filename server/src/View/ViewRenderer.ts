@@ -16,9 +16,9 @@ export default class ViewRenderer {
 
         const cb = (req: Request, res: Response) => {
 
-            const relPath: string = "../client/dist/";
+            const relPath: string = "../client/build/";
             
-            res.sendFile(path.join(/*__dirname, */relPath, VIEW_URL));
+            res.sendFile(path.join(__dirname, relPath, VIEW_URL));
         
         };
         

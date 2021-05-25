@@ -6,7 +6,7 @@
 
 .App-header {
   background-color: #282c34;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(6px + 2vmin);
   color: white;
 }
 
@@ -19,5 +19,5 @@
 
 .not-sidebar {
   flex-basis: 0;
-  flex-grow: 999;
+  flex-grow: 2;
 }

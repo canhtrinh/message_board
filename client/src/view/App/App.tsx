@@ -1,13 +1,13 @@
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
-import MessageList from '../components/MessageList/MessageList';
 import EditorPanel from '../components/EditorPanel/EditorPanel';
 import NavigationContainer from '../components/Navigation/NavigationContainer';
+import MessageListContainer from '../components/MessageList/MessageListContainer';
 
 const App = () => (
 	<div className="container">
 		<NavigationContainer />
-		<MessageList />
+		<MessageListContainer />
 		<EditorPanel />
 	</div>
 );

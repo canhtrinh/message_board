@@ -3,7 +3,7 @@
     min-height: 100vh;
     background-color: #282c34;
     font-size: calc(10px + 1vmin);
-    color: white;
+    color: grey;
   }
 
 .nav-items-container {
@@ -20,7 +20,7 @@
     cursor: pointer;
 }
 .nav-item:hover {
-    color: rgb(160, 150, 150);
+    color: white;
 }
 
 .sidebar {
@@ -32,4 +32,5 @@
     position: fixed;
     left: 20px;
     bottom: 20px;
+    font-size: calc(5px + 1vmin);
 }
