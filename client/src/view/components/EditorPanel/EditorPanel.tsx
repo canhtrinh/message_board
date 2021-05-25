@@ -14,7 +14,7 @@ interface IEditorPanelState {
     inputValue: string;
 }
 
-class EditorPanel extends PureComponent<IEditorPanelProps, any> {
+class EditorPanel extends PureComponent<IEditorPanelProps, IEditorPanelState> {
 
     constructor(props: any, state: any) {
 
