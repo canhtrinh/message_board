@@ -1,0 +1,7 @@
+.editor-panel {
+    /* height: calc(100vh - 100px); */
+    margin: 10px;
+    border-color: grey;
+    border-style: solid;
+    border-width: thin;
+}
