@@ -20,3 +20,10 @@ export const fetchChannels = () => {
         }
     }
 }
+
+
+export const CHANGE_CHANNEL: string = "CHANGE_CHANNEL";
+export const changeChannel = (currentChannel: IChannelInfo) => ({
+    type: CHANGE_CHANNEL,
+    payload: { currentChannel }
+})

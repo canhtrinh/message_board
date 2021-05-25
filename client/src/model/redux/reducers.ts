@@ -1,5 +1,8 @@
 import { IChannelInfo } from "../dto/IChannelInfo"
-import { FETCH_POSTS_SUCCESS } from "./action"
+import { 
+    CHANGE_CHANNEL,
+    FETCH_POSTS_SUCCESS 
+} from "./action"
 
 interface IChannelActions {
     type: string;
@@ -8,7 +11,7 @@ interface IChannelActions {
     }
 }
 
-const channels = (state: IChannelInfo[] = [], action: IChannelActions) => {
+export const channels = (state: IChannelInfo[] = [], action: IChannelActions) => {
 
     switch(action.type) {
         case FETCH_POSTS_SUCCESS:
@@ -17,6 +20,21 @@ const channels = (state: IChannelInfo[] = [], action: IChannelActions) => {
             return state;
     }
 
-}
+};
 
-export default channels;
+interface IChangeChannelActions {
+    type: string;
+    payload: {
+        currentChannel: IChannelInfo;
+    }
+}
+export const currentChannel = (state: IChannelInfo = {} as IChannelInfo, action: IChangeChannelActions) => {
+
+    switch(action.type) {
+        case CHANGE_CHANNEL:
+            return action.payload.currentChannel;
+        default:
+            return state;
+    }
+
+};
