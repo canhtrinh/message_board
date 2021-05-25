@@ -14,7 +14,6 @@ class ViewRenderer {
         var _a;
         const cb = (req, res) => {
             const relPath = "../../../../client/build/";
-            console.log("DIRNAME", __dirname);
             res.sendFile(path_1.default.join(__dirname, relPath, constants_1.VIEW_URL));
         };
         (_a = this.application) === null || _a === void 0 ? void 0 : _a.get("/*", cb);
