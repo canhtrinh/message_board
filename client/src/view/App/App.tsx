@@ -6,9 +6,9 @@ import MessageListContainer from '../components/MessageList/MessageListContainer
 import Header from '../components/Header/Header';
 
 const App = () => (
-	<div>
+	<div className="top-container">
 		<Header />
-		<div className="container">
+		<div className="contents-container">
 			<NavigationContainer />
 			<MessageListContainer />
 			<EditorPanel />
