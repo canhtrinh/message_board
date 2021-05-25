@@ -21,7 +21,7 @@ const MessageList = (props: IMessageListProps) => {
         <div className="message-list-container">
             {props.messagesForChannel
             .map((messageInfo: IMessageInfo) => (<MessageItem 
-                key={messageInfo.message_id} 
+                key={messageInfo.message_id + new Date().toDateString()} 
                 message={messageInfo.message}
             />
             ))}

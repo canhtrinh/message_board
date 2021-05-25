@@ -9,6 +9,8 @@ export default class ViewRenderer {
     constructor(application: Application) {
         
         this.application = application;
+
+        this.initiateView();
     
     }
 
@@ -16,7 +18,9 @@ export default class ViewRenderer {
 
         const cb = (req: Request, res: Response) => {
 
-            const relPath: string = "../client/build/";
+            const relPath: string = "../../../../client/build/";
+
+            console.log("DIRNAME",__dirname);
             
             res.sendFile(path.join(__dirname, relPath, VIEW_URL));
         

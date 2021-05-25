@@ -21,7 +21,8 @@ textarea.md-textarea.form-control {
 
 .submit-btn {
     position: fixed;
-    right: 0;
+    right: 10px;
+    bottom: 10px;
 }
 
 .form-group {

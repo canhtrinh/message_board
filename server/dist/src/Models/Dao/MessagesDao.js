@@ -16,9 +16,9 @@ class MessagesDao {
         });
     }
     static bulkCreateMessages(db) {
-        MessagesDao.addMessage(db, "Welcome to NBC", 1);
-        MessagesDao.addMessage(db, "Welcome to ABC", 2);
-        MessagesDao.addMessage(db, "Welcome to CBS", 3);
+        MessagesDao.addMessage(db, "Welcome to NBC! Please start a discussion below.", 1);
+        MessagesDao.addMessage(db, "Welcome to ABC! Please start a discussion below.", 2);
+        MessagesDao.addMessage(db, "Welcome to CBS! Please start a discussion below.", 3);
     }
     static addMessage(db, message, channelId) {
         return db.run(`INSERT INTO messages (message, channel_id) VALUES (?, ?)`, [message, channelId], (err) => console.log("added message for channel", message, channelId, err));

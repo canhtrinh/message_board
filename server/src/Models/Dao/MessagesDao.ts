@@ -20,9 +20,9 @@ export default class MessagesDao {
 
     public static bulkCreateMessages(db: any) {
 
-        MessagesDao.addMessage(db, "Welcome to NBC", 1);
-        MessagesDao.addMessage(db, "Welcome to ABC", 2);
-        MessagesDao.addMessage(db, "Welcome to CBS", 3);
+        MessagesDao.addMessage(db, "Welcome to NBC! Please start a discussion below.", 1);
+        MessagesDao.addMessage(db, "Welcome to ABC! Please start a discussion below.", 2);
+        MessagesDao.addMessage(db, "Welcome to CBS! Please start a discussion below.", 3);
     
     }
 

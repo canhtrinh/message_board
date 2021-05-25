@@ -5,6 +5,8 @@ import MessageController from "../Controllers/MessageController";
 import Database from "./Database";
 import bodyParser from "body-parser";
 import cors from "cors";
+import path from "path";
+import ViewRenderer from "../View/ViewRenderer";
 
 export default class ServerInstance {
 
@@ -31,7 +33,10 @@ export default class ServerInstance {
             this.serverInstance.listen(PORT, () => {
                 console.log(`The server is running on port ${PORT}`)
             });
+
             this.instantiateControllers(this.serverInstance, this.database);
+
+            this.instantiateStaticView(this.serverInstance);
 
         } catch (exception) {
 
@@ -53,6 +58,8 @@ export default class ServerInstance {
 
         this.serverInstance.use(express.json());
 
+        this.serverInstance.use(express.static(path.join(__dirname, 'build')));
+
     }
 
     public getServerInstance(): Application {
@@ -67,6 +74,11 @@ export default class ServerInstance {
         
         const messageController = new MessageController(serverInstance, database);
 
+    }
+
+    public instantiateStaticView(serverInstance: Application) {
+
+        const viewRenderer = new ViewRenderer(serverInstance);
     }
 
 }

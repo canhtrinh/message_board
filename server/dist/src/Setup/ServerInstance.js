@@ -10,6 +10,8 @@ const MessageController_1 = __importDefault(require("../Controllers/MessageContr
 const Database_1 = __importDefault(require("./Database"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
+const ViewRenderer_1 = __importDefault(require("../View/ViewRenderer"));
 class ServerInstance {
     constructor() {
         this.serverInstance = express_1.default();
@@ -23,6 +25,7 @@ class ServerInstance {
                 console.log(`The server is running on port ${constants_1.PORT}`);
             });
             this.instantiateControllers(this.serverInstance, this.database);
+            this.instantiateStaticView(this.serverInstance);
         }
         catch (exception) {
             console.error("The server instance failed to start");
@@ -34,6 +37,7 @@ class ServerInstance {
         this.serverInstance.use(body_parser_1.default.json());
         this.serverInstance.use("/", express_1.default.Router());
         this.serverInstance.use(express_1.default.json());
+        this.serverInstance.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
     }
     getServerInstance() {
         return this.serverInstance;
@@ -41,6 +45,9 @@ class ServerInstance {
     instantiateControllers(serverInstance, database) {
         const channelController = new ChannelController_1.default(serverInstance, database);
         const messageController = new MessageController_1.default(serverInstance, database);
+    }
+    instantiateStaticView(serverInstance) {
+        const viewRenderer = new ViewRenderer_1.default(serverInstance);
     }
 }
 exports.default = ServerInstance;
