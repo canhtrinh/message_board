@@ -5,20 +5,6 @@
     border-width: thin;
 }
 
-textarea.md-textarea.form-control {
-    min-height: 85vh;
-    min-width: 35vw;
-}
-
-.md-form {
-    position: relative;
-    /* margin-top: 1.5rem;
-    margin-bottom: 1.5rem; */
-    margin: 1.5rem;
-    height: 90%;
-    width: 100%;
-}
-
 .submit-btn {
     position: fixed;
     right: 10px;
@@ -27,8 +13,6 @@ textarea.md-textarea.form-control {
 
 .form-group {
     position: relative;
-    /* margin-top: 1.5rem;
-    margin-bottom: 1.5rem; */
     margin: 1.5rem;
     height: 90%;
     width: 100%;

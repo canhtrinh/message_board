@@ -1,5 +1,4 @@
 import './App.css';
-import Navigation from '../components/Navigation/Navigation';
 import EditorPanelContainer from '../components/EditorPanel/EditorPanelContainer';
 import NavigationContainer from '../components/Navigation/NavigationContainer';
 import MessageListContainer from '../components/MessageList/MessageListContainer';

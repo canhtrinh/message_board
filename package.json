@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "run-server": "cd server && npm run start",
     "build-server": "cd server && npm run build",
-    "build-and-run-server": "cd server && npm run build && npm run start"
+    "build-and-run-server": "cd server && npm i && npm run build && npm run start",
+    "build-and-run-client": "cd client && npm i && npm run start"
   },
   "repository": {
     "type": "git",
