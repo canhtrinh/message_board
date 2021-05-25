@@ -1,9 +1,18 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import App from './App';
+import { mount, shallow } from "enzyme";
+import "../../setupTests";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+let appTest;
+
+describe("Main app renders three individual panels", () => {
+
+  it("shows three main panels", () => {
+
+    appTest = mount(<App />);
+    expect(appTest.find("container").length).toBe(1);
+    expect(appTest.find('div').children().length).toBe(3);
+  
+  });
+
 });

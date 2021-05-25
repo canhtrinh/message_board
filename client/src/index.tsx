@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
 import './index.css';
-import App from './components/App/App';
+import App from './view/App/App';
 import reportWebVitals from './reportWebVitals';
+import store from "./model/redux/store";
+import { fetchChannels } from "./model/redux/action";
+
+store.dispatch(fetchChannels() as any);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+	<Provider store={store}>
+    	<React.StrictMode>
+    		<App />
+  		</React.StrictMode>
+  	</Provider>,
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
