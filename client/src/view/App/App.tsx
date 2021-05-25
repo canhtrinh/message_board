@@ -1,6 +1,6 @@
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
-import EditorPanel from '../components/EditorPanel/EditorPanel';
+import EditorPanelContainer from '../components/EditorPanel/EditorPanelContainer';
 import NavigationContainer from '../components/Navigation/NavigationContainer';
 import MessageListContainer from '../components/MessageList/MessageListContainer';
 import Header from '../components/Header/Header';
@@ -11,7 +11,7 @@ const App = () => (
 		<div className="contents-container">
 			<NavigationContainer />
 			<MessageListContainer />
-			<EditorPanel />
+			<EditorPanelContainer />
 		</div>
 	</div>
 

@@ -3,7 +3,8 @@ import { IMessageInfo } from "../dto/IMessageInfo";
 import { 
     CHANGE_CHANNEL,
     FETCH_CHANNELS_SUCCESS, 
-    FETCH_MESSAGES_SUCCESS
+    FETCH_MESSAGES_SUCCESS,
+    POST_MESSAGE_SUCCESS
 } from "./action"
 
 interface IChannelActions {
@@ -44,6 +45,7 @@ interface IMessagesActions {
     type: string;
     payload: {
         messagesForChannel: IMessageInfo[];
+        sentMessage: IMessageInfo;
     }
 }
 export const messages = (state: IMessageInfo[] = [], action: IMessagesActions) => {
@@ -51,6 +53,8 @@ export const messages = (state: IMessageInfo[] = [], action: IMessagesActions) =
     switch(action.type) {
         case FETCH_MESSAGES_SUCCESS:
             return action.payload.messagesForChannel;
+        case POST_MESSAGE_SUCCESS:
+            return [...state, action.payload.sentMessage];
         default:
             return state;
     }
